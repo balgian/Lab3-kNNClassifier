@@ -7,6 +7,10 @@
 \usepackage{newtxtext,newtxmath}
 \usepackage{tablefootnote}
 \usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{margin=0.55in}
+
 \graphicspath{{./Figure/}}
 \title{kNN Classifier}
 \author{
@@ -59,7 +63,29 @@ After computing the distance, the algorithm predicted the class to which points 
 \subsection{Model evaluation}
 The model was evaluated computing its accuracy in relation to the specific $k$ parameter considered during the analysis and model training. As mentioned earlier, the $k$ parameter represents the number of nearest neighbors taken into account for classifying a new data point, determining how many points in the training dataset are chosen to decide the class of a sample. The results obtained, specifically the model's accuracy for each value of $k$, are displayed in Figure \ref{fig::accuracy}.
 Another parameters used to evaluate the model are: the \textit{error rate}, which represent the percentage of incorrect predictions; the \textit{precision} that characterize the proportion of true positives (correctly classified instances) among all positive predictions made by the classifier; the \textit{recall} which is the proportion of true positives among all actual positive instances; the \textit{F1 Score} that represent the harmonic mean of precision and recall, providing a balanced measure of both.
-All those parameters are
+The last three parameters are obtained with a \textit{confusion matrix}. A \textit{confusion matrix} is a table used to evaluate the performance of a classification model by comparing its predictions against the actual outcomes. It provides a detailed breakdown of prediction accuracy across different classes, offering insight into the model’s strengths and areas for improvement. The confusion matrix is structured as follows:
+\begin{equation*}
+	\text{C}=\begin{pmatrix}
+		\text{TP} & \text{FP} \\
+		\text{FN} & \text{TN}
+	\end{pmatrix}
+\end{equation*}
+where the \textit{true positives} (TP) are the cases where the model correctly predicted the positive class; the \textit{true negatives} (TN) are the cases where the model correctly predicted the negative class; the \textit{false positives} (FP) are the cases where the model incorrectly predicted the positive class (Type I error); and the \textit{false negatives} (FN) is the cases where the model incorrectly predicted the negative class (Type II error).
+
+
+\begin{table}[h!]
+    \centering
+    \caption{Class 0 Statistics over all k values}
+    \begin{tabular}{@{}lrrrrr@{}}
+        \toprule
+        Metric    & Mean     & Median   & AAD       & 1st Quantile & 3rd Quantile \\
+        \midrule
+        Precision & 0.987879 & 1        & 0.0198347 & 1           & 1            \\
+        Recall    & 0.991736 & 1        & 0.0135237 & 1           & 1            \\
+        F1 Score  & 0.989797 & 1        & 0.0129861 & 0.971941    & 1            \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \begin{figure}[h]
 	\centering
