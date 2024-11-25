@@ -2,11 +2,12 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
 \usepackage{cite}
 \usepackage{newtxtext,newtxmath}
 \usepackage{tablefootnote}
 \usepackage{graphicx}
-\graphicspath{{Figure/}}
+\graphicspath{{./Figure/}}
 \title{kNN Classifier}
 \author{
 	Gian Marco Balia\\
@@ -56,18 +57,21 @@ The implementation of k-Nearest Neighbors (kNN) algorithm is based on computing 
 After computing the distance, the algorithm predicted the class to which points belong based on the number of neighbors $k$.
 
 \subsection{Model evaluation}
-The model was evaluated computing its accuracy in relation to the specific $k$ parameter considered during the analysis and model training. As mentioned earlier, the $k$ parameter represents the number of nearest neighbors taken into account for classifying a new data point, determining how many points in the training dataset are chosen to decide the class of a sample. The results obtained, specifically the model's accuracy for each value of $k$, are displayed in Figure \ref{fig::kNN_Classifier_Fig_accuracy}.
+The model was evaluated computing its accuracy in relation to the specific $k$ parameter considered during the analysis and model training. As mentioned earlier, the $k$ parameter represents the number of nearest neighbors taken into account for classifying a new data point, determining how many points in the training dataset are chosen to decide the class of a sample. The results obtained, specifically the model's accuracy for each value of $k$, are displayed in Figure \ref{fig::accuracy}.
+Another parameters used to evaluate the model are: the \textit{error rate}, which represent the percentage of incorrect predictions; the \textit{precision} that characterize the proportion of true positives (correctly classified instances) among all positive predictions made by the classifier; the \textit{recall} which is the proportion of true positives among all actual positive instances; the \textit{F1 Score} that represent the harmonic mean of precision and recall, providing a balanced measure of both.
+All those parameters are
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{Figure_kNN_Classifier.png}
-	\caption{The image shows the correlation between the accuracy of the implemented kNN Classifier model and the number of neighbors $k$}
-	\label{fig::kNN_Classifier_Fig_accuracy}
+	\includegraphics[width=0.5\textwidth]{accuracy.png}
+	\caption{Relationship between the number of neighbors $k$ and the classification accuracy across all classes for the kNN classifier.}
+	\label{fig::accuracy}
 \end{figure}
 
 \section{Results and Conclusion}
-The parameter $k$ determines how many neighbors are considered to make the classification. The value of $k$ has a significant impact on the model's performance. If $k$ is too small, the algorithm can be sensitive to noise in the data and may lead to overfitting, where the model fits too closely to the training data. On the other hand, if $k$ is too large, it can reduce the model's ability to capture local variations in the data, resulting in under-fitting, where the model fails to adequately represent the complexities of the dataset. As shown in Figure \ref{fig::kNN_Classifier_Fig_accuracy}, choosing the optimal value of $k$ is crucial to balance accuracy and computational complexity.
-In Figure \ref{fig::kNN_Classifier_Fig_accuracy}, are highlighted the two optimus number of neighbors $k$ three and four.
-
+The parameter $k$ determines how many neighbors are considered to make the classification. The value of $k$ has a significant impact on the model's performance. If $k$ is too small, the algorithm can be sensitive to noise in the data and may lead to overfitting, where the model fits too closely to the training data. On the other hand, if $k$ is too large, it can reduce the model's ability to capture local variations in the data, resulting in under-fitting, where the model fails to adequately represent the complexities of the dataset. As shown in Figure \ref{fig::accuracy}, choosing the optimal value of $k$ is crucial to balance accuracy and computational complexity.
+In Figure \ref{fig::accuracy}, are highlighted the two optimums number of neighbors $k$ three and four.
+% TODO Highlight that the error rate in the first class i very high (100%)
 \bibliographystyle{IEEEtranS}
 \bibliography{Bib.bib}
 

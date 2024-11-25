@@ -4,7 +4,6 @@ import KNNClassifier
 from tabulate import tabulate
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_wine
-from tensorflow.keras.datasets import mnist
 from sklearn.model_selection import train_test_split
 
 
@@ -14,11 +13,6 @@ def confusion_matrix(y_true: np.ndarray, y_pred: np.ndarray) -> np.ndarray:
     for i in range(len(y_true)):
         cm[y_true[i], y_pred[i]] += 1
     return cm
-
-
-def accuracy(y_true: np.ndarray, y_pred: np.ndarray) -> float:
-    cm = confusion_matrix(y_true, y_pred)
-    return np.trace(cm) / np.sum(cm)
 
 
 def precision(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -116,7 +110,7 @@ if __name__ == "__main__":
             y_pred: np.ndarray
             error_rate: float
             y_pred, error_rate = kNN.predict(x_test, y_test)
-            print(f"Class {cls}, k={neighbors}, Error rate: {error_rate}")
+            print(f"Class {cls}, k={neighbors}, Error rate: {round(100 * error_rate, 2)}%")
 
             # Compute accuracy
             accuracy = np.mean(y_pred == binary_y_test)
