@@ -16,7 +16,7 @@ class KNNClassifier:
         self.x_train = x
         self.y_train = y
 
-    def predict(self, x: np.ndarray) -> np.ndarray:
+    def predict(self, x: np.ndarray, y: np.ndarray | None = None) -> np.ndarray | tuple[np.ndarray, float]:
         predictions = []
         for i in range(x.shape[0]):
             distances = np.linalg.norm(self.x_train - x[i], axis=1)
@@ -24,4 +24,6 @@ class KNNClassifier:
             k_labels = self.y_train[k_indices]
             prediction = np.bincount(k_labels).argmax()
             predictions.append(prediction)
-        return np.array(predictions)
+        if y is None:
+            return np.array(predictions)
+        return np.array(predictions), np.mean(predictions != y)
