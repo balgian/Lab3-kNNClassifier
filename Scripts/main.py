@@ -109,7 +109,7 @@ if __name__ == "__main__":
             # Predict on test set
             y_pred: np.ndarray
             error_rate: float
-            y_pred, error_rate = kNN.predict(x_test, y_test)
+            y_pred, error_rate = kNN.predict(x_test, binary_y_test)
             print(f"Class {cls}, k={neighbors}, Error rate: {round(100 * error_rate, 2)}%")
 
             # Compute accuracy
@@ -172,7 +172,7 @@ if __name__ == "__main__":
     # Plot results
     plt.figure(figsize=(12, 8))
     for cls in classes:
-        plt.plot(k, [100 * np.mean(acc) for acc in accuracy_results[cls].values()], label=f'Class {cls}', alpha=0.4,
+        plt.plot(k, [100 * np.mean(acc) for acc in accuracy_results[cls].values()], label=f'Class {cls+1}', alpha=0.4,
                  marker='o', markersize=5, linewidth=2)
     plt.xlabel('Number of Neighbors (k)')
     plt.ylabel('Accuracy (%)')
